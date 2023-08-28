@@ -1,0 +1,33 @@
+/* Custom listbox (Vocabulary Group List) */
+.arn-group-list {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	height: 280px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+
+	li:nth-child(even) {
+		background-color: $table-striped-bg;
+	}
+
+	em {
+		font-style: normal;
+		font-size: smaller;
+		color: $info;
+		width: 36px;
+		display: inline-block;
+	}
+
+	b {
+		color: #444;
+		font-weight: normal;
+		display: inline-block;
+		width: 128px;
+	}
+
+	span {
+		color: #777;
+		font-size: smaller;
+	}
+}

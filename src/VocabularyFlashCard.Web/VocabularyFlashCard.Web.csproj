@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<PublishSingleFile>true</PublishSingleFile>
+		<SelfContained>false</SelfContained>
+		<RuntimeIdentifier>win-x86</RuntimeIdentifier>
+
+		<!--We use the following line because host server (smarterasp.net) can't run serveral application at same time.
+			for more info see:
+			https://www.smarterasp.net/support/kb/a1999/what-should-we-do-when-get-http-error-500_34-ancm-mixed-hosting-models-not-supported.aspx?KBSearchID=688609-->
+		<AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
+		<ServerGarbageCollection>false</ServerGarbageCollection> <!--This option set to use less memory on the server-->
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<IncludeOpenAPIAnalyzers>true</IncludeOpenAPIAnalyzers>
+		<UserSecretsId>4eabafd3-8aaf-4765-a428-16e7281cbb75</UserSecretsId>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.10" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.10" />
+		<PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="7.0.10" />
+		<PackageReference Include="NLog.Web.AspNetCore" Version="5.3.3" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\VocabularyFlashCard.Core\VocabularyFlashCard.Core.csproj" />
+		<ProjectReference Include="..\VocabularyFlashCard.DataService\VocabularyFlashCard.DataService.csproj" />
+		<ProjectReference Include="..\VocabularyFlashCard.Infrastructure\VocabularyFlashCard.Infrastructure.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="wwwroot\" />
+		<Content Update="ClientApp\*.*" CopyToOutputDirectory="Never" CopyToPublishDirectory="Never" />
+	</ItemGroup>
+
+</Project>
