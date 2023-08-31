@@ -1,9 +1,9 @@
-import { ColorMode } from "./ColorMode";
 import { AppSetttingsStorage } from "./AppSettingsStorage";
+import { ColorMode } from "./ColorMode";
 
 export class ColorTheme {
 	public static GetTheme() {
-		let appSettings = AppSetttingsStorage.Load();
+		const appSettings = AppSetttingsStorage.Load();
 		this.#applyColorMode(appSettings?.colorMode);
 		return appSettings?.colorMode;
 	}
@@ -16,7 +16,7 @@ export class ColorTheme {
 		}
 
 		if (save) {
-			let appSettings = AppSetttingsStorage.Load();
+			const appSettings = AppSetttingsStorage.Load();
 			appSettings.colorMode = colorMode;
 			AppSetttingsStorage.Save(appSettings);
 		}

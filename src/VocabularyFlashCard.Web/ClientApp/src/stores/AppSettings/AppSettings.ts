@@ -1,5 +1,5 @@
-import { AppSetttingsStorage } from "./AppSettingsStorage";
 import { type IAppSettings, defaultAppSettings } from "./IAppSettings";
+import { AppSetttingsStorage } from "./AppSettingsStorage";
 import { defineStore } from "pinia";
 
 export const useAppSettingsStore = defineStore("appsettings", {

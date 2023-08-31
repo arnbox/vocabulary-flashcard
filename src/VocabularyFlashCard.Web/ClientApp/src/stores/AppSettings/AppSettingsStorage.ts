@@ -1,4 +1,4 @@
-import { defaultAppSettings, type IAppSettings } from "./IAppSettings";
+import { type IAppSettings, defaultAppSettings } from "./IAppSettings";
 
 export class AppSetttingsStorage {
 	private static keyName = "appsetttings";

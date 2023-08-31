@@ -5,9 +5,9 @@ import App from "./App.vue";
 import { BootstrapTooltip } from "./components/BootstrapTooltip";
 //import { CheckAuthentication } from "./router/authentication";
 import { CheckAuthentication } from "./router/authentication";
+import { ColorTheme } from "./stores/AppSettings/ColorTheme";
 import { createPinia } from "pinia";
 import router from "./router";
-import { ColorTheme } from "./stores/AppSettings/ColorTheme";
 
 const pinia = createPinia();
 

@@ -15,7 +15,7 @@ SET PROJECT_NAME=VocabularyFlashCard
 SET BACKUP_FOLDER=code-backup\
 SET TARGET_FILE="%BACKUP_FOLDER%%PROJECT_NAME%-%dt%.7z"
 
-SET SOURCE_FOLDER=VocabularyFlashCard
+SET SOURCE_FOLDER=vocabulary-flashcard
 SET WORKING_FOLDER=..\..\..\
 :: add "-xr!+folder_name" for example for "bin" folder: -xr!bin
 SET EXCLUDE_FOLDERS=-xr!bin -xr!obj -xr!node_modules -xr!.vs -xr!dist

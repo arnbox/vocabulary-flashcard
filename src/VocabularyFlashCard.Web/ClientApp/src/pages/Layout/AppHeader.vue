@@ -15,10 +15,10 @@ import {
 import AppLogo from "./AppLogo.vue";
 import { AppPaths } from "@/utilities/config";
 import Collapse from "bootstrap/js/dist/collapse";
+import { ColorTheme } from "@/stores/AppSettings/ColorTheme";
 import { defineComponent } from "vue";
 import router from "@/router";
 import { useLoginStore } from "@/stores/Login/Login";
-import { ColorTheme } from "@/stores/AppSettings/ColorTheme";
 
 export default defineComponent({
 	components: {

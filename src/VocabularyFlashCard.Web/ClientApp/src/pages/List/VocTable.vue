@@ -61,7 +61,14 @@ export default defineComponent({
 				</div>
 
 				<div class="col-md-2">
-					<span class="fw-bold me-1">{{ voc.word }}</span>
+					<span class="me-1 fw-bold">
+					<span class="d-none d-sm-block">
+						{{ voc.word }}
+					</span>
+					<span class="fs-2 d-block d-sm-none">
+						{{ voc.word }}
+					</span>
+				</span>
 					<VocMarked
 						:marked="voc.marked"
 						:vocabulary-id="voc.vocabularyId"
