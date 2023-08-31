@@ -22,4 +22,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\VocabularyFlashCard.Infrastructure\VocabularyFlashCard.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

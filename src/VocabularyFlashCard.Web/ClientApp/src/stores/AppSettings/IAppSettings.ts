@@ -1,7 +1,7 @@
 export interface IAppSettings {
-    colorMode: string
+	colorMode: string;
 }
 
 export const defaultAppSettings: IAppSettings = {
-    colorMode: ""
+	colorMode: "",
 };
