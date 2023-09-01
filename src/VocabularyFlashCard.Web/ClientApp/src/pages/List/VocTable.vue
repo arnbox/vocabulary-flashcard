@@ -62,10 +62,10 @@ export default defineComponent({
 
 				<div class="col-md-2">
 					<span class="me-1 fw-bold">
-					<span class="d-none d-sm-block">
+					<span class="d-none d-sm-inline">
 						{{ voc.word }}
 					</span>
-					<span class="fs-2 d-block d-sm-none">
+					<span class="fs-2 d-inline d-sm-none">
 						{{ voc.word }}
 					</span>
 				</span>
