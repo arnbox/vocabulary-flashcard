@@ -192,7 +192,7 @@ export default defineComponent({
 			v-for="medium in mediaTag"
 			:key="medium.vocabularyMediaId"
 			v-tooltip
-			:class="`${medium.iconColor} h2 m-1`"
+			:class="`${medium.iconColor} voc-audio m-1`"
 			:title="medium.title"
 			:data-bs-toggle="medium.bootstrapTooltip"
 			:data-play-id="medium.tagId"
