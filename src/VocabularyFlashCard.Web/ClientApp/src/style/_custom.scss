@@ -31,3 +31,25 @@
 		font-size: smaller;
 	}
 }
+
+/* Vocabulary word */
+.voc-word {
+	font-size: $h3-font-size;
+}
+/* tablet and desktop */
+@include media-breakpoint-up(md) {
+	.voc-word {
+		font-size: $font-size-base;
+	}
+}
+
+/* Vocabulary audio */
+.voc-audio {
+	font-size: $h2-font-size;
+}
+/* tablet and desktop */
+@include media-breakpoint-up(md) {
+	.voc-audio {
+		font-size: $h4-font-size;
+	}
+}
