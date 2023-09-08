@@ -1,19 +1,21 @@
 @echo off
-:: Purpose of this batch file is to open development environment
+:: Open development environment
 
-:: set variables
+:: variables
 SET FRONT_END_PATH=../../src/VocabularyFlashCard.Web/ClientApp/
 SET BACK_END_PATH=../../src/VocabularyFlashCard.Web/
+SET PROJECT_PATH=../../
 SET APP_NAME="(VocabularyFlashCard)"
-
 
 SET VS_CODE=CODE
 SET VISUAL_STUDIO=devenv
 SET SOLUTION_PATH=../../VocabularyFlashCard.sln
 
-
-:: Open Windows Terminal for front-end and back-end
-START "" WT -d %FRONT_END_PATH% --tabColor #2088cd --title "Front-end %APP_NAME%"; split-pane -d %BACK_END_PATH% --tabColor #63228f --title "Back-end %APP_NAME%"
+:: Open Windows Terminal for git, front-end and back-end
+START WT ^
+	nt -d %PROJECT_PATH% --title "Root for git %APP_NAME%" --tabColor #f34c26; ^
+	split-pane -d %BACK_END_PATH% --title "Back-end %APP_NAME%" --tabColor #63228f; ^
+	split-pane -d %FRONT_END_PATH% --title "Front-end %APP_NAME%" --tabColor #2088cd
 
 :: Open solution in Visual Studio
 START "" %VISUAL_STUDIO% %SOLUTION_PATH%
