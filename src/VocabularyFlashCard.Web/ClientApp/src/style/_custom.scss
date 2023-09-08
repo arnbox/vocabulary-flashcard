@@ -12,22 +12,22 @@
 	}
 
 	em {
+		color: var(--bs-secondary-color);
 		font-style: normal;
 		font-size: smaller;
-		color: $info;
 		width: 36px;
 		display: inline-block;
 	}
 
 	b {
-		color: #444;
+		color: var(--bs-body-color);
 		font-weight: normal;
 		display: inline-block;
 		width: 128px;
 	}
 
 	span {
-		color: #777;
+		color: var(--bs-tertiary-color);
 		font-size: smaller;
 	}
 }
