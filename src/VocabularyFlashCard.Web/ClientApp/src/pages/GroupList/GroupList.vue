@@ -61,10 +61,11 @@ export default defineComponent({
 		<h5
 			:class="[
 				group.groupId === 0 ? 'bg-info' : 'bg-primary',
-				'text-white p-2',
+				'text-white p-2 mt-1 rounded-1',
 			]"
 		>
-			{{ groupHeader(group.groupId) }} ({{ group.vocabularies.length }})
+			{{ groupHeader(group.groupId) }}
+			<span class="text-dark">({{ group.vocabularies.length }})</span>
 		</h5>
 
 		<ul class="arn-group-list">
