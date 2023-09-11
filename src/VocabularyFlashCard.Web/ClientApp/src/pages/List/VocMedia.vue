@@ -167,12 +167,27 @@ export default defineComponent({
 
 		showTooltip(audioId: string) {
 			const parent = this.$refs.mediaDiv as HTMLElement;
-			const tooltipEl = parent?.querySelector(`span[data-play-id=${audioId}]`);
+			const tooltipEl = parent?.querySelector(`span[data-play-id=${audioId}]`) as HTMLElement;
 			if (tooltipEl) {
 				const tooltip = Tooltip?.getOrCreateInstance(tooltipEl);
+				this.hideAllTooltips();
 				tooltip?.show();
+				// const tooltipDisplayTime = this.getTooltipDisplayTime(tooltipEl);
+				// setTimeout(() => { tooltip?.hide(); }, tooltipDisplayTime);
 			}
 		},
+
+		// getTooltipDisplayTime(tooltipEl: HTMLElement) {
+		// 	let delayTime = 0;
+		// 	const lenTitle = tooltipEl.dataset?.bsOriginalTitle?.length ?? 0;
+		// 	if (lenTitle) {
+		// 		const delayForEachCharacter = 150;
+		// 		const miniMalDisplayTime = 3500;
+		// 		const toolTipDisplayTime = delayForEachCharacter * lenTitle;
+		// 		delayTime = Math.max(miniMalDisplayTime, toolTipDisplayTime);
+		// 	}
+		// 	return delayTime;
+		// },
 
 		hideAllTooltips() {
 			const parent = this.$refs.mediaDiv as HTMLElement;
@@ -188,17 +203,9 @@ export default defineComponent({
 
 <template>
 	<div ref="mediaDiv">
-		<span
-			v-for="medium in mediaTag"
-			:key="medium.vocabularyMediaId"
-			v-tooltip
-			:class="`${medium.iconColor} voc-audio m-1`"
-			:title="medium.title"
-			:data-bs-toggle="medium.bootstrapTooltip"
-			:data-play-id="medium.tagId"
-			role="button"
-			@click="playSound(medium.tagId)"
-		>
+		<span v-for="medium in mediaTag" :key="medium.vocabularyMediaId" v-tooltip
+			:class="`${medium.iconColor} voc-audio m-1`" :title="medium.title" :data-bs-toggle="medium.bootstrapTooltip"
+			:data-play-id="medium.tagId" role="button" @click="playSound(medium.tagId)">
 			<audio :id="medium.tagId" preload="none">
 				<source :src="medium.mediaPath" type="audio/mpeg" />
 			</audio>
