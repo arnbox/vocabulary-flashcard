@@ -7,6 +7,7 @@ export enum ApiUrls {
 	Stats = "VocabularyStats",
 	GroupList = "VocabularyGroupList",
 	DifficultVocs = "Vocabularies/DifficultVocabularies",
+	AllVocabulariesWord = "Vocabularies/VocabulariesWord",
 	AppUser = "Users",
 	Login = "Auth/Login",
 	Logout = "Auth/Logout",

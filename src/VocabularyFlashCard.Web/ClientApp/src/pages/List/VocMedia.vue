@@ -167,7 +167,9 @@ export default defineComponent({
 
 		showTooltip(audioId: string) {
 			const parent = this.$refs.mediaDiv as HTMLElement;
-			const tooltipEl = parent?.querySelector(`span[data-play-id=${audioId}]`) as HTMLElement;
+			const tooltipEl = parent?.querySelector(
+				`span[data-play-id=${audioId}]`,
+			) as HTMLElement;
 			if (tooltipEl) {
 				const tooltip = Tooltip?.getOrCreateInstance(tooltipEl);
 				this.hideAllTooltips();
@@ -203,9 +205,17 @@ export default defineComponent({
 
 <template>
 	<div ref="mediaDiv">
-		<span v-for="medium in mediaTag" :key="medium.vocabularyMediaId" v-tooltip
-			:class="`${medium.iconColor} voc-audio m-1`" :title="medium.title" :data-bs-toggle="medium.bootstrapTooltip"
-			:data-play-id="medium.tagId" role="button" @click="playSound(medium.tagId)">
+		<span
+			v-for="medium in mediaTag"
+			:key="medium.vocabularyMediaId"
+			v-tooltip
+			:class="`${medium.iconColor} voc-audio m-1`"
+			:title="medium.title"
+			:data-bs-toggle="medium.bootstrapTooltip"
+			:data-play-id="medium.tagId"
+			role="button"
+			@click="playSound(medium.tagId)"
+		>
 			<audio :id="medium.tagId" preload="none">
 				<source :src="medium.mediaPath" type="audio/mpeg" />
 			</audio>

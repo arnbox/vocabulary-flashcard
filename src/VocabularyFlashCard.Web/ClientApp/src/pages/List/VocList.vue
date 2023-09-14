@@ -28,6 +28,7 @@ export default defineComponent({
 			vocList: structuredClone(defaultVocabularyList) as IVocabularyList,
 			vocShowAddEdit: false,
 			vocSelected: { ...defaultVocabulary },
+			suggestWords: [] as Array<string>,
 			searchPhrase: "",
 		};
 	},
@@ -71,6 +72,13 @@ export default defineComponent({
 
 		async updateVocab(page = 1) {
 			this.vocList = await this.getVocabs(page);
+		},
+
+		async handleSearchFocus() {
+			// pre-fetch words to suggest as auto complete
+			const url = ApiUrls.AllVocabulariesWord;
+			const words = await WebApi.Do<Array<string>>(ApiMethod.Get, url);
+			this.suggestWords = words;
 		},
 
 		modifyMarkedVocab(vocMarked: IVocabularyMarked) {
@@ -131,12 +139,19 @@ export default defineComponent({
 		<div class="row">
 			<form class="col-lg-4" @submit.prevent="handleSearch">
 				<div class="input-group mb-3">
-					<span class="input-group-text"><BIconSearch /></span>
+					<span class="input-group-text">
+						<BIconSearch />
+					</span>
 					<input
 						v-model.trim="searchPhrase"
 						type="search"
+						list="suggest-words"
 						class="form-control"
+						@focus="handleSearchFocus"
 					/>
+					<datalist id="suggest-words">
+						<option v-for="word in suggestWords" :key="word">{{ word }}</option>
+					</datalist>
 					<button class="btn btn-outline-secondary" type="submit">
 						Search
 					</button>
