@@ -150,7 +150,7 @@ export default defineComponent({
 						@focus="handleSearchFocus"
 					/>
 					<datalist id="suggest-words">
-						<option v-for="word in suggestWords" :key="word">{{ word }}</option>
+						<option v-for="word in suggestWords" :key="word" :value="word"></option>
 					</datalist>
 					<button class="btn btn-outline-secondary" type="submit">
 						Search
