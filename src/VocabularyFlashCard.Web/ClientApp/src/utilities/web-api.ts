@@ -84,7 +84,7 @@ export class WebApi {
 	private static showLoading() {
 		this.loadingHandler = setTimeout(() => {
 			this.store.setLoading(true);
-		}, AppSetttings.LaodingNotificationDelay);
+		}, AppSetttings.LoadingNotificationDelay);
 	}
 
 	private static hideLoading() {

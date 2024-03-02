@@ -42,6 +42,6 @@ set dt=%dt:~0,4%-%dt:~4,2%-%dt:~6,2%_%dt:~8,2%-%dt:~10,2%-%dt:~12,2%
 :: TIMEOUT 5
 CD %PUBLISH_FOLDER%
 CD..
-%ZIPPER% a -tzip "c:\Users\nasro\Desktop\%ZIP_FILE_NAME%-%dt%.zip" "%PUBLISH_FOLDER%\*"
+%ZIPPER% a -tzip "%USERPROFILE%\Desktop\%ZIP_FILE_NAME%-%dt%.zip" "%PUBLISH_FOLDER%\*"
 
 PAUSE
