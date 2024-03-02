@@ -26,10 +26,10 @@ export enum AppPaths {
 
 export class AppSetttings {
 	// Maximum total number of groups in Flashcard
-	static MaxVocabularyGroup = 7;
+	static MaxVocabularyGroup = 5;
 
 	// in Millisecond
-	static LaodingNotificationDelay = 450;
+	static LoadingNotificationDelay = 450;
 
 	// Internal number to define temporary Id for new vocabulary media
 	static NewVocabularyMediaIdStart = 1000000000;
