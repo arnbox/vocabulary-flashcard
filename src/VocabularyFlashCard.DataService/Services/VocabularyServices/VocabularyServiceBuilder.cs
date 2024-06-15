@@ -47,7 +47,7 @@ internal static class VocabularyServiceBuilder
 			default:
 				if (!getAll)
 				{
-					query = query.OrderBy(v => v.VocabularyId);
+					query = query.OrderByDescending(v => v.VocabularyId);
 				}
 				break;
 		}

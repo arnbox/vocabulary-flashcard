@@ -106,9 +106,10 @@ export default defineComponent({
 		},
 
 		handleSearch() {
-			this.updateVocab(1);
+			const firstPage = 1;
+			this.updateVocab(firstPage);
 			// update address of page to the first page
-			router.replace({ name: "List", params: { id: 1 } });
+			router.replace({ name: "List", params: { id: firstPage } });
 		},
 
 		cancelEdit() {
@@ -148,9 +149,14 @@ export default defineComponent({
 						list="suggest-words"
 						class="form-control"
 						@focus="handleSearchFocus"
+						@input="handleSearch"
 					/>
 					<datalist id="suggest-words">
-						<option v-for="word in suggestWords" :key="word" :value="word"></option>
+						<option
+							v-for="word in suggestWords"
+							:key="word"
+							:value="word"
+						></option>
 					</datalist>
 					<button class="btn btn-outline-secondary" type="submit">
 						Search
