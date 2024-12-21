@@ -164,11 +164,11 @@ public static class ServiceExtensions
 		services.AddResponseCompression(options =>
 		{
 			options.EnableForHttps = true;
-			options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[]
-			{
+			options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
+			[
 				"image/svg+xml",
 				"application/atom+xml"
-			});
+			]);
 		});
 
 		services.Configure<BrotliCompressionProviderOptions>(options =>

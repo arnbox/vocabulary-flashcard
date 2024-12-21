@@ -10,6 +10,11 @@
 *.userosscache
 *.sln.docstates
 
+
+# git user
+id_rsa_arnbox
+id_rsa_arnbox.pub
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
