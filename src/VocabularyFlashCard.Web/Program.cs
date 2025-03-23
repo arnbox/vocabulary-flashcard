@@ -3,65 +3,65 @@ logger.Debug("init main");
 
 try
 {
-    var builder = WebApplication.CreateBuilder(args);
+	var builder = WebApplication.CreateBuilder(args);
 
-    builder.Logging.ClearProviders();
-    builder.Host.UseNLog();
+	builder.Logging.ClearProviders();
+	builder.Host.UseNLog();
 
-    var isProduction = builder.Environment.IsProduction();
-    var services = builder.Services;
-    var config = builder.Configuration;
+	var isProduction = builder.Environment.IsProduction();
+	var services = builder.Services;
+	var config = builder.Configuration;
 
-    services
-        .AddMemoryEncryption()
-        .AddSqlConnection(config, isProduction)
-        .AddOptionReader(isProduction)
-        .AddJwtConfig()
-        .AddIdentityConfig()
-        .AddUnicodeConfig()
-        .AddHttpCompression()
-        .AddDependencyGroup();
+	services
+		.AddMemoryEncryption()
+		.AddSqlConnection(config, isProduction)
+		.AddOptionReader(isProduction)
+		.AddJwtConfig()
+		.AddIdentityConfig()
+		.AddUnicodeConfig()
+		.AddHttpCompression()
+		.AddDependencyGroup();
 
 
-    var corsPolicy = services.AddCorsConfig();
+	var corsPolicy = services.AddCorsConfig();
 
-    //services.AddControllers(option => option.ModelBinderProviders.Insert(0, new TrimStringModelBinderProvider()));
-    services.AddControllers();
-    services.AddEndpointsApiExplorer();
-    services.AddSwaggerGen();
+	//services.AddControllers(option => option.ModelBinderProviders.Insert(0, new TrimStringModelBinderProvider()));
+	services.AddControllers();
+	services.AddEndpointsApiExplorer();
+	services.AddSwaggerGen();
 
-    services.AddHealthChecks()
-            .AddDbContextCheck<AppDbContext>();
+	services.AddHealthChecks()
+			.AddDbContextCheck<AppDbContext>();
 
-    services.AddAuthorization();
+	services.AddAuthorization();
 
-    var app = builder.Build();
+	var app = builder.Build();
 
-    app.AddSwagger();
+	app.AddSwagger();
 
-    app.UseRouting();
-    app.UseCors(corsPolicy);
+	app.UseRouting();
+	app.UseCors(corsPolicy);
 
-    app.UseResponseCompression();
-    app.AddStaticFilesSettings();
+	app.UseResponseCompression();
+	app.AddStaticFilesSettings();
 
-    app.UseAuthentication();
-    app.UseAuthorization();
+	app.UseAuthentication();
+	app.UseAuthorization();
 
-    app.UseMiddleware<GlobalExceptionHandler>();
+	app.UseMiddleware<GlobalExceptionHandler>();
 
-    app.MapControllers();
-    app.MapHealthChecks(AppConstants.HealthCheck);
-    app.MapFallbackToFile(AppConstants.HomePage);
+	app.MapControllers();
+	app.MapHealthChecks(AppConstants.HealthCheck);
+	app.MapFallbackToFile(AppConstants.HomePage);
 
-    app.Run();
+	app.Run();
 }
 catch (Exception exception)
 {
-    logger.Error(exception, "Stopped program because of exception");
-    throw;
+	logger.Error(exception, "Stopped program because of exception");
+	throw;
 }
 finally
 {
-    LogManager.Shutdown();
+	LogManager.Shutdown();
 }

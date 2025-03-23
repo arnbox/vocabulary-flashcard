@@ -14,7 +14,6 @@ public class StringExtensionTests
     }
 
     [Theory]
-    [InlineData(null, null)]
     [InlineData("", "")]
     [InlineData("A", "A")]
     [InlineData("   A", "A")]

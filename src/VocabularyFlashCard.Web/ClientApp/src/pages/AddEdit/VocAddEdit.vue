@@ -43,6 +43,7 @@ export default defineComponent({
 		return {
 			vocabulary: defaultVocabulary,
 			newMediumId: AppSetttings.NewVocabularyMediaIdStart,
+			maxGroup: AppSetttings.MaxVocabularyGroup,
 		};
 	},
 
@@ -136,7 +137,11 @@ export default defineComponent({
 					class="form-select"
 					name="group"
 				>
-					<option v-for="groupCount in 7" :key="groupCount" :value="groupCount">
+					<option
+						v-for="groupCount in maxGroup"
+						:key="groupCount"
+						:value="groupCount"
+					>
 						Group {{ groupCount }}
 					</option>
 				</select>
