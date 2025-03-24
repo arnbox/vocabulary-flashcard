@@ -33,5 +33,5 @@ public class JwtOptions
 	/// </summary>
 	[Required]
 	[Range(0, int.MaxValue)]
-	public int ExpiryMinutes { get; set; } = (60 * 24) * 7;
+	public int ExpiryInMinutes { get; set; } = (60 * 24) * 7;
 }
