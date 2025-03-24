@@ -20,7 +20,7 @@ try
 		.AddIdentityConfig()
 		.AddUnicodeConfig()
 		.AddHttpCompression()
-		.AddDependencyGroup();
+		.AddDependencyGroup(builder);
 
 
 	var corsPolicy = services.AddCorsConfig();

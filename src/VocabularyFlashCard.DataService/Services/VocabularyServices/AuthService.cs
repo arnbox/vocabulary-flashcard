@@ -38,28 +38,28 @@ public class AuthService : IAuthService
 			if (result.Succeeded)
 			{
 				var securityKey = Encoding.UTF8.GetBytes(_jwtOptions.Key);
-				var email = user?.Email ?? string.Empty;
+				var email = user.Email ?? string.Empty;
 
 				var claims = new Claim[]
 				{
 					new (JwtRegisteredClaimNames.Email, email),
-					new (JwtRegisteredClaimNames.NameId, user?.UserName ?? string.Empty),
+					new (JwtRegisteredClaimNames.NameId, user.UserName ?? string.Empty),
 				};
 				var now = DateTime.Now.ToCustomeTimeZone();
-				var jwtToken = new JwtSecurityToken
+				var jwtSecurityToken = new JwtSecurityToken
 				(
 					issuer: _jwtOptions.Issuer,
 					audience: _jwtOptions.Audience,
 					claims: claims,
-					expires: now.AddMinutes(_jwtOptions.ExpiryMinutes),
+					expires: now.AddMinutes(_jwtOptions.ExpiryInMinutes),
 					signingCredentials: new SigningCredentials(new SymmetricSecurityKey(securityKey), SecurityAlgorithms.HmacSha512Signature)
 				);
 
-				var secToken = new JwtSecurityTokenHandler().WriteToken(jwtToken);
+				var jwtToken = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
 				authViewModel.IsLoggedIn = true;
 				authViewModel.Email = email;
-				authViewModel.Id = user?.Id ?? string.Empty;
-				authViewModel.Bearer = secToken;
+				authViewModel.Id = user.Id ?? string.Empty;
+				authViewModel.Bearer = jwtToken;
 			}
 		}
 		return authViewModel;

@@ -59,8 +59,15 @@ public static class ServiceExtensions
 		return services;
 	}
 
-	public static IServiceCollection AddDependencyGroup(this IServiceCollection services)
+	public static IServiceCollection AddDependencyGroup(this IServiceCollection services, WebApplicationBuilder builder)
 	{
+		// Validate scopes and services at compile time
+		builder.Host.UseDefaultServiceProvider((context, options) =>
+		{
+			options.ValidateScopes = true;
+			options.ValidateOnBuild = true;
+		});
+
 		// Repositories
 		services.AddScoped<IVocabularyRepository, EFVocabularyRepository>();
 		services.AddScoped<IVocabularyMediaRepository, EFVocabularyMediaRepository>();
@@ -153,7 +160,7 @@ public static class ServiceExtensions
 							.AllowAnyMethod()
 							.AllowAnyHeader()
 							.AllowCredentials()
-							.SetPreflightMaxAge(TimeSpan.FromMinutes(jwtOptions.ExpiryMinutes))
+							.SetPreflightMaxAge(TimeSpan.FromMinutes(jwtOptions.ExpiryInMinutes))
 							.WithOrigins(jwtOptions.Audience))); // front-end
 
 		return corsPolicyName;

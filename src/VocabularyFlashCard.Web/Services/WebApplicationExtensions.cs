@@ -17,21 +17,21 @@ namespace VocabularyFlashCard.Web.Services
 		public static WebApplication AddStaticFilesSettings(this WebApplication app)
 		{
 			// Set up custom content types - associating file extension to MIME type
-			//var provider = new FileExtensionContentTypeProvider();
-			//provider.Mappings[".avif"] = "image/avif";  // Add new mappings
+			var provider = new FileExtensionContentTypeProvider();
+			provider.Mappings[".avif"] = "image/avif";  // Add new mappings
 
+			// static files cache
+			const int oneYearInSeconds = (60 * 60 * 24 * 365);
+			app.UseStaticFiles(new StaticFileOptions
+			{
+				ContentTypeProvider = provider,
+				OnPrepareResponse = ctx =>
+				{
+					ctx.Context.Response.Headers.Append("Cache-Control", $"public, max-age={oneYearInSeconds}");
+				}
+			});
 
-			//// static files cache
-			//const string oneYearInSeconds = "31536000";  // (60 * 60 * 24 * 365).ToString();
-			//app.UseStaticFiles(new StaticFileOptions
-			//{
-			//	ContentTypeProvider = provider,
-			//	OnPrepareResponse = ctx =>
-			//	{
-			//		ctx.Context.Response.Headers.Append("Cache-Control", $"public, max-age={oneYearInSeconds}");
-			//	}
-			//});
-			app.MapStaticAssets();
+			// app.MapStaticAssets();	// Temporary disable for the server limitation in .Net 9
 
 			return app;
 		}
