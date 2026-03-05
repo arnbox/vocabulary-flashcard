@@ -1,19 +1,19 @@
 @echo off
-set PUBLISH_FOLDER=d:\project\aspcore\VocabularyFlashCard All\publishfolder
-set APP_FOLDER="d:\project\aspcore\VocabularyFlashCard All\vocabulary-flashcard\src\VocabularyFlashCard.Web"
-set ZIP_FILE_NAME="vocabularyflashcard"
-set ZIPPER="c:\Program Files\7-Zip\7z.exe"
+SET PUBLISH_FOLDER=d:\project\aspcore\VocabularyFlashCard All\publishfolder
+SET APP_FOLDER="d:\project\aspcore\VocabularyFlashCard All\vocabulary-flashcard\src\VocabularyFlashCard.Web"
+SET ZIP_FILE_NAME="vocabularyflashcard"
 
-set SECRECTS_FOLDER="d:\project\aspcore\VocabularyFlashCard All\secrets-settings\production"
-set FRONTEND_PATH="d:\project\aspcore\VocabularyFlashCard All\vocabulary-flashcard\src\VocabularyFlashCard.Web\ClientApp"
-set DIST_PATH="d:\project\aspcore\VocabularyFlashCard All\vocabulary-flashcard\src\VocabularyFlashCard.Web\ClientApp\dist"
-set WWWROOT_PATH="d:\project\aspcore\VocabularyFlashCard All\publishfolder\wwwroot\"
+SET ZIPPER="c:\Program Files\7-Zip\7z.exe"
+SET SECRECTS_FOLDER="d:\project\aspcore\VocabularyFlashCard All\secrets-settings\production"
+SET FRONTEND_PATH="d:\project\aspcore\VocabularyFlashCard All\vocabulary-flashcard\src\VocabularyFlashCard.Web\ClientApp"
+SET DIST_PATH="d:\project\aspcore\VocabularyFlashCard All\vocabulary-flashcard\src\VocabularyFlashCard.Web\ClientApp\dist"
+SET WWWROOT_PATH="d:\project\aspcore\VocabularyFlashCard All\publishfolder\wwwroot\"
 D:
 
 :: Clean Publish folder
 ECHO Delete all file from publish folder ...
 CD "%PUBLISH_FOLDER%"
-del * /q
+DEL * /q
 for /D %%i in (*) do rd /s /q "%%i"
 
 :: Publish application
@@ -33,8 +33,7 @@ XCOPY %DIST_PATH% %WWWROOT_PATH% /E
 
 :: Get current date and time
 :: timestamp YYYY-MM-DD_HH-MM-SS
-for /f "delims=" %%a in ('wmic OS Get localdatetime  ^| find "."') do set dt=%%a
-set dt=%dt:~0,4%-%dt:~4,2%-%dt:~6,2%_%dt:~8,2%-%dt:~10,2%-%dt:~12,2%
+FOR /f "delims=" %%a IN ('powershell -command "Get-Date -Format 'yyyy-MM-dd_HH-mm-ss'"') DO SET dt=%%a
 :: echo %dt%
 
 

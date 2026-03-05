@@ -13,12 +13,12 @@ public class StringExtensionTests
         public int Number { get; set; }
     }
 
-    [Theory]
-    [InlineData("", "")]
-    [InlineData("A", "A")]
-    [InlineData("   A", "A")]
-    [InlineData("   A   ", "A")]
-    [InlineData("       ", "")]
+    [Test]
+    [Arguments("", "")]
+    [Arguments("A", "A")]
+    [Arguments("   A", "A")]
+    [Arguments("   A   ", "A")]
+    [Arguments("       ", "")]
     public void TrimStringProperties(string input, string expected)
     {
         // Arrange
@@ -31,7 +31,7 @@ public class StringExtensionTests
         sampleInput.TrimAllStrings<SampleInput>();
 
         // Assert
-        Assert.Equal(expected, sampleInput.TextProperty);
+        Assert.Equals(expected, sampleInput.TextProperty);
     }
 
     //[Theory]
