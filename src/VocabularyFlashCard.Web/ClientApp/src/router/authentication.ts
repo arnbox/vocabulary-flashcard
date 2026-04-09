@@ -4,14 +4,14 @@ import { useLoginStore } from "@/stores/Login/Login";
 
 export function CheckAuthentication(router: Router) {
 	const store = useLoginStore();
-	router.beforeEach(function (to, from, next) {
+	router.beforeEach(function (to, from) {
 		updateRedirectPath(to.path, store);
 		if (to.path !== AppPaths.Login && !store.authenticated()) {
-			next({ path: AppPaths.Login });
+			return { path: AppPaths.Login };
 		} else if (to.path === AppPaths.Login && store.authenticated()) {
-			next({ path: store.getRedirectPath() });
+			return { path: store.getRedirectPath() };
 		} else {
-			next();
+			return;
 		}
 	});
 }
